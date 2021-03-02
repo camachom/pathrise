@@ -1,14 +1,3 @@
-DROP TABLE IF EXISTS jobs;
-
-CREATE TABLE IF NOT EXISTS 
-  jobs (
-    id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    title TEXT DEFAULT NULL,
-    company_name TEXT DEFAULT 'Unknown',
-    url TEXT DEFAULT NULL,
-    resolved_board TEXT
-  );
-
 DROP TABLE IF EXISTS boards;
 
 CREATE TABLE IF NOT EXISTS 
@@ -20,4 +9,16 @@ CREATE TABLE IF NOT EXISTS
     logo_file TEXT NOT NULL,
     description TEXT NOT NULL,
     query TSQUERY
+  );
+
+DROP TABLE IF EXISTS jobs;
+
+CREATE TABLE IF NOT EXISTS 
+  jobs (
+    id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    title TEXT DEFAULT NULL,
+    company_name TEXT DEFAULT 'Unknown',
+    url TEXT DEFAULT NULL,
+    company_post BOOLEAN DEFAULT FALSE,
+    board_id INT REFERENCES boards (id)
   );
