@@ -8,12 +8,17 @@ const boardsRouter = require("./routes/boards");
 
 const app = express();
 
+const corsOptions = {
+	origin: "https://pathrise-client.herokuapp.com/",
+	optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors());
 
 app.use("/boards", boardsRouter);
 

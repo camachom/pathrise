@@ -15,5 +15,5 @@ CREATE TRIGGER preprocess_boards
     FOR EACH ROW
     EXECUTE PROCEDURE make_board_vectors();
 
-COPY boards(name, raiting, root_domain, logo_file, description) 
+COPY boards(name, rating, root_domain, logo_file, description) 
   FROM '/docker-entrypoint-initdb.d/job_boards.csv' DELIMITER ',' CSV;

@@ -33,7 +33,7 @@ router.get(
 
 		const getJobs = async () => {
 			return await db.any(
-				"SELECT * FROM jobs WHERE board_id = $1 LIMIT $2 OFFSET $3;",
+				"SELECT * FROM jobs WHERE board_id = $1 ORDER BY id DESC LIMIT $2 OFFSET $3;",
 				[id, limit, offset]
 			);
 		};

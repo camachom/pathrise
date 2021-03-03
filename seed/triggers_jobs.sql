@@ -2,6 +2,7 @@ CREATE OR REPLACE FUNCTION sanitize_data()
 RETURNS TRIGGER AS $sanitize_data_trigger$
 DECLARE 
   BOARD_ID INT;
+  DOMAIN TEXT;
   COMPANY_MATCH TEXT;
   COMPANY_NAME_QUERY TSQUERY;
   DOCUMENT TSVECTOR;
@@ -11,10 +12,17 @@ BEGIN
   IF NEW.title = '' THEN NEW.title = NULL;
   END IF;
 
+  DOMAIN := (
+    SELECT d.token
+    FROM ts_debug(NEW.url) as d
+    WHERE d.alias = 'host'
+    LIMIT 1
+  );
+
   DOCUMENT := 
     to_tsvector(
       'english',
-      coalesce(regexp_replace(NEW.url, '[^\w]+', ' ', 'gi'), '')
+      coalesce(regexp_replace(DOMAIN, '[^\w]+', ' ', 'gi'), '')
     );
   
   WITH board_matches AS (

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS
   boards (
     id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT NOT NULL,
-    raiting TEXT NOT NULL CHECK (raiting IN ('Okay','Good','Great')),
+    rating TEXT NOT NULL CHECK (rating IN ('Okay','Good','Great')),
     root_domain TEXT NOT NULL,
     logo_file TEXT NOT NULL,
     description TEXT NOT NULL,
