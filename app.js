@@ -9,7 +9,7 @@ const boardsRouter = require("./routes/boards");
 const app = express();
 
 const corsOptions = {
-	origin: "https://pathrise-client.herokuapp.com/",
+	origin: ["https://pathrise-client.herokuapp.com/", "http://localhost:3001"],
 	optionsSuccessStatus: 200,
 };
 
