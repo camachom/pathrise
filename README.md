@@ -33,7 +33,7 @@ All of the job resolution logic is written as triggers. A trigger is a function 
   - Search using queries from step 1 and rank results. If there are matches, return top result
   - Otherwise, do a similar process but using company name
 
-## W@hy is this an effective implementation?
+## Why is this an effective implementation?
 
 - Because all the logic is done in the database layer, the client and server are 'dumb'. This means they are quite easy to extend and scale.
 - SQL is better at dealing with data than Node. I did not have to import third parties or use complex regular expressions expressions.
